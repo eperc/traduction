@@ -1,0 +1,15 @@
+user_translator:
+    resource: "@UserTranslatorBundle/Resources/config/routing.yml"
+    prefix:   /translator
+
+user_client:
+    resource: "@UserClientBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user_admin:
+    resource: "@UserAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

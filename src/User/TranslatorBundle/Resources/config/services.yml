@@ -1,0 +1,4 @@
+services:
+#    user_translator.example:
+#        class: User\TranslatorBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
