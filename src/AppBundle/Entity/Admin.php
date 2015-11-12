@@ -28,6 +28,10 @@ class Admin
      */
     private $permission;
 
+    /**
+    * @ORM\OneToOne(targetEntity="User", mappedBy="admin")
+    **/
+    private $user;
 
     /**
      * Get id

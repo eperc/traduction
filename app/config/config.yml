@@ -83,3 +83,11 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\User
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        certificate_file:
+            uri_prefix: /documents/certificates
+            upload_destination: %kernel.root_dir/../web/documents/certificates    

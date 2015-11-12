@@ -50,6 +50,20 @@ class User extends BaseUser
      */
     protected $createdAt;
 
+    /**
+    * @ORM\OneToOne(targetEntity="Admin", inversedBy="user")
+    **/
+    private $admin;
+
+    /**
+    * @ORM\OneToOne(targetEntity="Client", inversedBy="user")
+    **/
+    private $client;    
+
+    /**
+    * @ORM\OneToOne(targetEntity="Translator", inversedBy="user")
+    **/
+    private $translator;    
 
     /**
      * Get id

@@ -21,6 +21,10 @@ class Client
      */
     private $id;
 
+    /**
+    * @ORM\OneToOne(targetEntity="User", mappedBy="client")
+    **/
+    private $user;
 
     /**
      * Get id

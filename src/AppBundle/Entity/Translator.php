@@ -28,6 +28,10 @@ class Translator
      */
     private $status;
 
+    /**
+    * @ORM\OneToOne(targetEntity="User", mappedBy="translator")
+    **/
+    private $user;
 
     /**
      * Get id
