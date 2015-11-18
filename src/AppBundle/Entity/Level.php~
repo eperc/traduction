@@ -67,45 +67,5 @@ class Level
     {
         return $this->name;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->references = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add reference
-     *
-     * @param \AppBundle\Entity\Reference $reference
-     *
-     * @return Level
-     */
-    public function addReference(\AppBundle\Entity\Reference $reference)
-    {
-        $this->references[] = $reference;
-
-        return $this;
-    }
-
-    /**
-     * Remove reference
-     *
-     * @param \AppBundle\Entity\Reference $reference
-     */
-    public function removeReference(\AppBundle\Entity\Reference $reference)
-    {
-        $this->references->removeElement($reference);
-    }
-
-    /**
-     * Get references
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getReferences()
-    {
-        return $this->references;
-    }
 }
+

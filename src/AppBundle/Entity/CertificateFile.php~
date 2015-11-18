@@ -135,52 +135,5 @@ class CertificateFile
     {
         return $this->updatedAt;
     }
-
-    /**
-     * Set certificate
-     *
-     * @param \AppBundle\Entity\Certificate $certificate
-     *
-     * @return CertificateFile
-     */
-    public function setCertificate(\AppBundle\Entity\Certificate $certificate = null)
-    {
-        $this->certificate = $certificate;
-
-        return $this;
-    }
-
-    /**
-     * Get certificate
-     *
-     * @return \AppBundle\Entity\Certificate
-     */
-    public function getCertificate()
-    {
-        return $this->certificate;
-    }
-
-    /**
-     * Set translator
-     *
-     * @param \AppBundle\Entity\Translator $translator
-     *
-     * @return CertificateFile
-     */
-    public function setTranslator(\AppBundle\Entity\Translator $translator = null)
-    {
-        $this->translator = $translator;
-
-        return $this;
-    }
-
-    /**
-     * Get translator
-     *
-     * @return \AppBundle\Entity\Translator
-     */
-    public function getTranslator()
-    {
-        return $this->translator;
-    }
 }
+

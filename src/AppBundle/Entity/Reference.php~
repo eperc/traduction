@@ -1,0 +1,49 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Reference
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\ReferenceRepository")
+ */
+class Reference
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Language", inversedBy="references")
+     */
+    private $language;       
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Level", inversedBy="references")
+     */
+    private $level;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Certificate", mappedBy="references")
+     */
+    private $certificates;    
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+

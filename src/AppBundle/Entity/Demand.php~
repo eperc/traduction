@@ -218,7 +218,7 @@ class Demand
     /**
      * Set isRead
      *
-     * @param bool $isImproved
+     * @param boolean $isImproved
      *
      * @return Demand
      */
@@ -232,123 +232,10 @@ class Demand
     /**
      * Get isImproved
      *
-     * @return bool
+     * @return boolean
      */
     public function getIsImproved()
     {
         return $this->isImproved;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->connections = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add connection
-     *
-     * @param \AppBundle\Entity\Connection $connection
-     *
-     * @return Demand
-     */
-    public function addConnection(\AppBundle\Entity\Connection $connection)
-    {
-        $this->connections[] = $connection;
-
-        return $this;
-    }
-
-    /**
-     * Remove connection
-     *
-     * @param \AppBundle\Entity\Connection $connection
-     */
-    public function removeConnection(\AppBundle\Entity\Connection $connection)
-    {
-        $this->connections->removeElement($connection);
-    }
-
-    /**
-     * Get connections
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getConnections()
-    {
-        return $this->connections;
-    }
-
-    /**
-     * Set translatedFrom
-     *
-     * @param \AppBundle\Entity\Language $translatedFrom
-     *
-     * @return Demand
-     */
-    public function setTranslatedFrom(\AppBundle\Entity\Language $translatedFrom = null)
-    {
-        $this->translatedFrom = $translatedFrom;
-
-        return $this;
-    }
-
-    /**
-     * Get translatedFrom
-     *
-     * @return \AppBundle\Entity\Language
-     */
-    public function getTranslatedFrom()
-    {
-        return $this->translatedFrom;
-    }
-
-    /**
-     * Set client
-     *
-     * @param \AppBundle\Entity\Client $client
-     *
-     * @return Demand
-     */
-    public function setClient(\AppBundle\Entity\Client $client = null)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * Get client
-     *
-     * @return \AppBundle\Entity\Client
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
-
-    /**
-     * Set specialty
-     *
-     * @param \AppBundle\Entity\Specialty $specialty
-     *
-     * @return Demand
-     */
-    public function setSpecialty(\AppBundle\Entity\Specialty $specialty = null)
-    {
-        $this->specialty = $specialty;
-
-        return $this;
-    }
-
-    /**
-     * Get specialty
-     *
-     * @return \AppBundle\Entity\Specialty
-     */
-    public function getSpecialty()
-    {
-        return $this->specialty;
     }
 }

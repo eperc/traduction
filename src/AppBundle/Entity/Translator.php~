@@ -1,0 +1,99 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Translator
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\TranslatorRepository")
+ */
+class Translator
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Translation", mappedBy="translator")
+    */
+    private $translations;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Improvement", mappedBy="translator")
+    */
+    private $improvements;
+
+    /**
+    * @ORM\OneToMany(targetEntity="CertificateFile", mappedBy="translator")
+    */
+    private $certificateFiles;    
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Specialty", inversedBy="translators")
+     * @ORM\JoinTable(name="translators_specialties")
+     */
+    private $specialties;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer")
+     */
+    private $status;
+
+    /**
+     * @var decimal
+     *
+     * @ORM\Column(name="penalty", type="decimal", scale=2)
+     */
+    private $penalty;    
+
+    /**
+    * @ORM\OneToOne(targetEntity="User", mappedBy="translator")
+    **/
+    private $user;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Translator
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+}
+

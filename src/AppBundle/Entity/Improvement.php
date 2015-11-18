@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Translation
+ * Improvement
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="AppBundle\Entity\TranslationRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\ImprovementRepository")
  */
-class Translation
+class Improvement
 {
     /**
      * @var integer
@@ -22,32 +22,23 @@ class Translation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Translator", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity="Translator", inversedBy="improvements")
      */
     private $translator;
 
     /**
-     * @ORM\OneToOne(targetEntity="Connection", inversedBy="translation")
+     * @ORM\OneToOne(targetEntity="Translation", inversedBy="improvement")
      */
-    private $connection;
-    /**
-     * @ORM\OneToOne(targetEntity="Improvement", mappedBy="translation")
-     */
-    private $improvement;
+    private $translation;
 
     /**
      * @var string
      *
      * @ORM\Column(name="content", type="text")
      */
-    private $content;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="score", type="integer")
-     */
-    private $score;
+
+    private $content;
 
     /**
      * @var string
@@ -57,11 +48,19 @@ class Translation
     private $status;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="score", type="integer")
+     */
+    private $score;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
      */
-    protected $updatedAt;
+    private $updatedAt;
+
 
     /**
      * Get id
@@ -78,7 +77,7 @@ class Translation
      *
      * @param string $content
      *
-     * @return Translation
+     * @return Improvement
      */
     public function setContent($content)
     {
@@ -98,35 +97,11 @@ class Translation
     }
 
     /**
-     * Set score
-     *
-     * @param integer $score
-     *
-     * @return Translation
-     */
-    public function setScore($score)
-    {
-        $this->score = $score;
-
-        return $this;
-    }
-
-    /**
-     * Get score
-     *
-     * @return integer
-     */
-    public function getScore()
-    {
-        return $this->score;
-    }
-
-    /**
      * Set status
      *
      * @param string $status
      *
-     * @return Translation
+     * @return Improvement
      */
     public function setStatus($status)
     {
@@ -146,11 +121,35 @@ class Translation
     }
 
     /**
+     * Set score
+     *
+     * @param integer $score
+     *
+     * @return Improvement
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+
+        return $this;
+    }
+
+    /**
+     * Get score
+     *
+     * @return integer
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
      *
-     * @return Translation
+     * @return Improvement
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -174,7 +173,7 @@ class Translation
      *
      * @param \AppBundle\Entity\Translator $translator
      *
-     * @return Translation
+     * @return Improvement
      */
     public function setTranslator(\AppBundle\Entity\Translator $translator = null)
     {
@@ -194,50 +193,26 @@ class Translation
     }
 
     /**
-     * Set connection
+     * Set translation
      *
-     * @param \AppBundle\Entity\Connection $connection
+     * @param \AppBundle\Entity\Translation $translation
      *
-     * @return Translation
+     * @return Improvement
      */
-    public function setConnection(\AppBundle\Entity\Connection $connection = null)
+    public function setTranslation(\AppBundle\Entity\Translation $translation = null)
     {
-        $this->connection = $connection;
+        $this->translation = $translation;
 
         return $this;
     }
 
     /**
-     * Get connection
+     * Get translation
      *
-     * @return \AppBundle\Entity\Connection
+     * @return \AppBundle\Entity\Translation
      */
-    public function getConnection()
+    public function getTranslation()
     {
-        return $this->connection;
-    }
-
-    /**
-     * Set improvement
-     *
-     * @param \AppBundle\Entity\Improvement $improvement
-     *
-     * @return Translation
-     */
-    public function setImprovement(\AppBundle\Entity\Improvement $improvement = null)
-    {
-        $this->improvement = $improvement;
-
-        return $this;
-    }
-
-    /**
-     * Get improvement
-     *
-     * @return \AppBundle\Entity\Improvement
-     */
-    public function getImprovement()
-    {
-        return $this->improvement;
+        return $this->translation;
     }
 }
