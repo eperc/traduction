@@ -8,7 +8,6 @@ security:
             memory: ~
         fos_userbundle:
             id: fos_user.user_provider.username_email
-            #entity: { class: AcmeUserBundle:User, property: username }
 
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
