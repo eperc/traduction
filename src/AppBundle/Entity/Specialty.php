@@ -23,12 +23,12 @@ class Specialty
     private $id;
 
     /**
-    * @ORM\OneToMany(targetEntity="Demand", mappedBy="specialty")
+    * @ORM\OneToMany(targetEntity="Document", mappedBy="specialty")
     */
-    private $demands;    
+    private $documents;    
 
     /**
-     * @ORM\ManyToMany(targetEntity="Translator", mappedBy="specialties")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="specialties")
      */
     private $translators;
 
@@ -39,6 +39,11 @@ class Specialty
      */
     private $name;
 
+    public function __construct()
+    {
+        $this->documents= new \Doctrine\Common\Collections\ArrayCollection();
+        $this->translators= new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -72,48 +77,6 @@ class Specialty
     public function getName()
     {
         return $this->name;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->demands = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->translators = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add demand
-     *
-     * @param \AppBundle\Entity\Demand $demand
-     *
-     * @return Specialty
-     */
-    public function addDemand(\AppBundle\Entity\Demand $demand)
-    {
-        $this->demands[] = $demand;
-
-        return $this;
-    }
-
-    /**
-     * Remove demand
-     *
-     * @param \AppBundle\Entity\Demand $demand
-     */
-    public function removeDemand(\AppBundle\Entity\Demand $demand)
-    {
-        $this->demands->removeElement($demand);
-    }
-
-    /**
-     * Get demands
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDemands()
-    {
-        return $this->demands;
     }
 
     /**

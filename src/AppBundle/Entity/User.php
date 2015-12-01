@@ -22,59 +22,107 @@ class User extends BaseUser
      */
     protected $id;
 
+    ### Client
+    /**
+    * @ORM\OneToMany(targetEntity="Demand", mappedBy="client")
+    */
+    protected $demands;
+    ###  
+
+    ### Translator
+    /**
+    * @ORM\OneToMany(targetEntity="Translation", mappedBy="translator")
+    */
+    protected $translations;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Improvement", mappedBy="translator")
+    */
+    protected $improvements;
+
+    /**
+    * @ORM\OneToMany(targetEntity="CertificateFile", mappedBy="translator")
+    */
+    protected $certificateFiles;    
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Specialty", inversedBy="translators")
+     * @ORM\JoinTable(name="translators_specialties")
+     */
+    protected $specialties;    
+    ###
+
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=100, nullable=true)
      */
     protected $name;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="surname", type="string", length=100)
+     * @ORM\Column(name="surname", type="string", length=100, nullable=true)
      */
     protected $surname;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
+     */
+    protected $address; 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     */
+    protected $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="postal_code", type="string", length=255, nullable=true)
+     */
+    protected $postalCode;             
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="born_at", type="date")
+     * @ORM\Column(name="born_at", type="date", nullable=true)
      */
     protected $bornAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     protected $createdAt;
 
     /**
-    * @ORM\OneToOne(targetEntity="Admin", inversedBy="user")
-    **/
-    private $admin;
+     * @var string
+     *
+     * @ORM\Column(name="state", type="string", length=100)
+     */
+    protected $state;    
 
-    /**
-    * @ORM\OneToOne(targetEntity="Client", inversedBy="user")
-    **/
-    private $client;    
-
-    /**
-    * @ORM\OneToOne(targetEntity="Translator", inversedBy="user")
-    **/
-    private $translator;    
-
+    public function __construct()
+    {
+        parent::__construct();
+        $this->demands= new \Doctrine\Common\Collections\ArrayCollection();
+        $this->translations= new \Doctrine\Common\Collections\ArrayCollection();
+        $this->improvements= new \Doctrine\Common\Collections\ArrayCollection();
+        $this->specialties= new \Doctrine\Common\Collections\ArrayCollection();
+        $this->certificateFiles= new \Doctrine\Common\Collections\ArrayCollection();
+    }
+  
     /**
      * Get id
      *
      * @return integer
      */
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     public function getId()
     {

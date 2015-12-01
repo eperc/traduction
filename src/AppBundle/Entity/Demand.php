@@ -22,18 +22,12 @@ class Demand
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Connection", mappedBy="demand")
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="demand")
      */
-    private $connections;
+    private $documents;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Language", inversedBy="translatingFrom")
-     * @ORM\JoinColumn(name="translated_from_id", referencedColumnName="id")
-     */
-    private $translatedFrom;  
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Client", inversedBy="demands")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="demands")
      */
     private $client;          
 
@@ -52,9 +46,9 @@ class Demand
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=100)
+     * @ORM\Column(name="state", type="string", length=100)
      */
-    private $status;
+    private $state;
 
     /**
      * @var boolean
@@ -84,6 +78,10 @@ class Demand
      */
     private $expiredAt;
 
+    public function __construct()
+    {
+        $this->documents= new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -120,27 +118,27 @@ class Demand
     }
 
     /**
-     * Set status
+     * Set state
      *
-     * @param string $status
+     * @param string $state
      *
      * @return Demand
      */
-    public function setStatus($status)
+    public function setState($state)
     {
-        $this->status = $status;
+        $this->state = $state;
 
         return $this;
     }
 
     /**
-     * Get status
+     * Get state
      *
      * @return string
      */
-    public function getStatus()
+    public function getState()
     {
-        return $this->status;
+        return $this->state;
     }
 
     /**
@@ -238,72 +236,7 @@ class Demand
     {
         return $this->isImproved;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->connections = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add connection
-     *
-     * @param \AppBundle\Entity\Connection $connection
-     *
-     * @return Demand
-     */
-    public function addConnection(\AppBundle\Entity\Connection $connection)
-    {
-        $this->connections[] = $connection;
-
-        return $this;
-    }
-
-    /**
-     * Remove connection
-     *
-     * @param \AppBundle\Entity\Connection $connection
-     */
-    public function removeConnection(\AppBundle\Entity\Connection $connection)
-    {
-        $this->connections->removeElement($connection);
-    }
-
-    /**
-     * Get connections
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getConnections()
-    {
-        return $this->connections;
-    }
-
-    /**
-     * Set translatedFrom
-     *
-     * @param \AppBundle\Entity\Language $translatedFrom
-     *
-     * @return Demand
-     */
-    public function setTranslatedFrom(\AppBundle\Entity\Language $translatedFrom = null)
-    {
-        $this->translatedFrom = $translatedFrom;
-
-        return $this;
-    }
-
-    /**
-     * Get translatedFrom
-     *
-     * @return \AppBundle\Entity\Language
-     */
-    public function getTranslatedFrom()
-    {
-        return $this->translatedFrom;
-    }
-
+ 
     /**
      * Set client
      *

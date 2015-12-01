@@ -1,10 +1,14 @@
+acme_user:
+    resource: "@AcmeUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 user_translator:
     resource: "@UserTranslatorBundle/Resources/config/routing.yml"
     prefix:   /translator
 
 user_client:
     resource: "@UserClientBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /client
 
 user_admin:
     resource: "@UserAdminBundle/Resources/config/routing.yml"
@@ -13,6 +17,9 @@ user_admin:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"    
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Admin
  *
- * @ORM\Table()
+ * @ORM\Table(name="admin")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\AdminRepository")
  */
 class Admin
@@ -19,19 +19,22 @@ class Admin
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="permission", type="integer")
      */
-    private $permission;
+    protected $permission;
 
     /**
-    * @ORM\OneToOne(targetEntity="User", mappedBy="admin")
-    **/
-    private $user;
+     * Constructor
+     */    
+    public function __construct()
+    {
+        parent::__construct();   
+    }
 
     /**
      * Get id
@@ -65,29 +68,5 @@ class Admin
     public function getPermission()
     {
         return $this->permission;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Admin
-     */
-    public function setUser(\AppBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }

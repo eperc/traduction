@@ -1,3 +1,7 @@
 user_translator_homepage:
     path:     /hello/{name}
     defaults: { _controller: UserTranslatorBundle:Default:index }
+
+user_translator_translation_show:
+    path: /translation/show
+    defaults: { _controller: UserTranslatorBundle:Translation:show }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Client
  *
- * @ORM\Table()
+ * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\ClientRepository")
  */
 class Client
@@ -19,17 +19,12 @@ class Client
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
-    /**
-    * @ORM\OneToOne(targetEntity="User", mappedBy="client")
-    **/
-    private $user;
+    protected $id;
 
     /**
     * @ORM\OneToMany(targetEntity="Demand", mappedBy="client")
     */
-    private $demands;      
+    #protected $demands;      
 
     /**
      * Get id
@@ -45,64 +40,7 @@ class Client
      */
     public function __construct()
     {
+        parent::__construct();   
         $this->demands = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Client
-     */
-    public function setUser(\AppBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Add demand
-     *
-     * @param \AppBundle\Entity\Demand $demand
-     *
-     * @return Client
-     */
-    public function addDemand(\AppBundle\Entity\Demand $demand)
-    {
-        $this->demands[] = $demand;
-
-        return $this;
-    }
-
-    /**
-     * Remove demand
-     *
-     * @param \AppBundle\Entity\Demand $demand
-     */
-    public function removeDemand(\AppBundle\Entity\Demand $demand)
-    {
-        $this->demands->removeElement($demand);
-    }
-
-    /**
-     * Get demands
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDemands()
-    {
-        return $this->demands;
     }
 }

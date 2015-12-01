@@ -1,0 +1,44 @@
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Acme\UserBundle\Entity\User
+    service:
+        user_manager: pugx_user_manager
+
+pugx_multi_user:
+  users:
+    client:
+        entity: 
+          class: Acme\UserBundle\Entity\Client
+#          factory: 
+        registration:
+          form: 
+            type: Acme\UserBundle\Form\Type\RegistrationClientFormType
+            name: fos_user_registration_form
+            validation_groups:  [Registration, Default]
+          template: AcmeUserBundle:Registration:client.form.html.twig
+        profile:
+          form:
+            type: Acme\UserBundle\Form\Type\ProfileClientFormType
+            name: fos_user_profile_form
+            validation_groups:  [Profile, Default] 
+    translator:
+        entity: 
+          class: Acme\UserBundle\Entity\Translator
+        registration:
+          form: 
+            type: Acme\UserBundle\Form\Type\RegistrationTranslatorFormType
+          template: AcmeUserBundle:Registration:translator.form.html.twig
+        profile:
+          form: 
+            type: Acme\UserBundle\Form\Type\ProfileTranslatorFormType
+    admin:
+        entity: 
+          class: Acme\UserBundle\Entity\Admin
+        registration:
+          form: 
+            type: Acme\UserBundle\Form\Type\RegistrationAdminFormType
+          template: AcmeUserBundle:Registration:admin.form.html.twig
+        profile:
+          form: 
+            type: Acme\UserBundle\Form\Type\ProfileAdminFormType            

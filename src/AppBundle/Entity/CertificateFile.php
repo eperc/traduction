@@ -29,7 +29,7 @@ class CertificateFile
     private $certificate;   
 
     /**
-     * @ORM\ManyToOne(targetEntity="Translator", inversedBy="certificateFiles")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="certificateFiles")
      */
     private $translator;    
 

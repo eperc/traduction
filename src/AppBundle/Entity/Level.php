@@ -22,6 +22,11 @@ class Level
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="Deliverable", mappedBy="level")
+     */   
+    private $deliverables;
+
+    /**
     * @ORM\OneToMany(targetEntity="Reference", mappedBy="level")
     */
     private $references;    
@@ -33,6 +38,14 @@ class Level
      */
     private $name;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->deliverables= new \Doctrine\Common\Collections\ArrayCollection();
+        $this->references = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -67,14 +80,7 @@ class Level
     {
         return $this->name;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->references = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
+ 
     /**
      * Add reference
      *
