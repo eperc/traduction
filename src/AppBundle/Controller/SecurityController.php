@@ -15,8 +15,6 @@ class SecurityController extends Controller
      */
     public function loginAction(Request $request)
     {
-        $discriminator = $this->container->get('pugx_user.manager.user_discriminator');
-        $discriminator->setClass('Acme\UserBundle\Entity\Client');
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();

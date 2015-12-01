@@ -111,6 +111,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->state= "inactive";
         $this->demands= new \Doctrine\Common\Collections\ArrayCollection();
         $this->translations= new \Doctrine\Common\Collections\ArrayCollection();
         $this->improvements= new \Doctrine\Common\Collections\ArrayCollection();
