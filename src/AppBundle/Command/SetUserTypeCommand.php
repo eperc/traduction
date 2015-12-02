@@ -9,20 +9,19 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use AppBundle\Entity\user;
 
-class AddUserRoleCommand extends ContainerAwareCommand
+class SetUserTypeCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('user:add_role')
-            ->setDescription('Add user role.')
+            ->setName('user:set_type')
+            ->setDescription('Set user type')
             ->setDefinition(array(
                 new InputArgument('username', InputArgument::REQUIRED, 'The username'),
-                new InputArgument('role', InputArgument::REQUIRED, 'The role'),
-                new InputOption('remove', null, InputOption::VALUE_NONE, 'Remove role'),
+                new InputArgument('type', InputArgument::REQUIRED, 'The type'),
             ))
             ->setHelp(<<<EOT
-The <info>user:add_role</info> command add a role to user:
+The <info>user:set_type</info> command set user type:
 
   <info>php app/console fos:user:create matthieu</info>
 
@@ -47,21 +46,15 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)    
     {
         $username   = $input->getArgument('username');
-        $role      = $input->getArgument('role');
-        $remove = $input->getOption('remove');
+        $type      = $input->getArgument('type');
 
         $userManager = $this->getContainer()->get('fos_user.user_manager');
 
-        $user = $userManager->findUserByUserName($username);  
-        if(!(Boolean) $remove){       
-            $user->addRole($role); 
-        }   
-        else{
-            $user->removeRole($role);
-        }
+        $user = $userManager->findUserByUserName($username);       
+        $user->setType($type); 
         $userManager->updateUser($user,true);
 
-        $output->writeln(sprintf('Added (removed) role <comment>%s</comment> to user <comment>%s</comment>',$role ,$username));
+        $output->writeln(sprintf('Set type <comment>%s</comment> to user <comment>%s</comment>',$type ,$username));
     }
 }
 
