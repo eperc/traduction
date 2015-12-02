@@ -23,12 +23,12 @@ class Specialty
     private $id;
 
     /**
-    * @ORM\OneToMany(targetEntity="Demand", mappedBy="specialty")
+    * @ORM\OneToMany(targetEntity="Document", mappedBy="specialty")
     */
-    private $demands;    
+    private $documents;    
 
     /**
-     * @ORM\ManyToMany(targetEntity="Translator", mappedBy="specialties")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="specialties")
      */
     private $translators;
 
@@ -39,6 +39,11 @@ class Specialty
      */
     private $name;
 
+    public function __construct()
+    {
+        $this->documents= new \Doctrine\Common\Collections\ArrayCollection();
+        $this->translators= new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -73,5 +78,38 @@ class Specialty
     {
         return $this->name;
     }
-}
 
+    /**
+     * Add translator
+     *
+     * @param \AppBundle\Entity\Translator $translator
+     *
+     * @return Specialty
+     */
+    public function addTranslator(\AppBundle\Entity\Translator $translator)
+    {
+        $this->translators[] = $translator;
+
+        return $this;
+    }
+
+    /**
+     * Remove translator
+     *
+     * @param \AppBundle\Entity\Translator $translator
+     */
+    public function removeTranslator(\AppBundle\Entity\Translator $translator)
+    {
+        $this->translators->removeElement($translator);
+    }
+
+    /**
+     * Get translators
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranslators()
+    {
+        return $this->translators;
+    }
+}

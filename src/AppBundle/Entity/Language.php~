@@ -22,19 +22,19 @@ class Language
     private $id;
 
     /**
-    * @ORM\OneToMany(targetEntity="Demand", mappedBy="translatedFrom")
-    */
-    private $translatingFrom;  
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="language")
+     */
+    private $documents;
 
     /**
-    * @ORM\OneToMany(targetEntity="Connection", mappedBy="translatedTo")
-    */
-    private $connections; 
+     * @ORM\OneToMany(targetEntity="Deliverable", mappedBy="language")
+     */   
+    private $deliverables;
+
     /**
     * @ORM\OneToMany(targetEntity="Reference", mappedBy="language")
     */
-    private $references;     
-    
+    private $references;         
 
     /**
      * @var string
@@ -77,5 +77,48 @@ class Language
     {
         return $this->name;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->documents= new \Doctrine\Common\Collections\ArrayCollection();
+        $this->deliverables= new \Doctrine\Common\Collections\ArrayCollection();
+        $this->connections = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->references = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add reference
+     *
+     * @param \AppBundle\Entity\Reference $reference
+     *
+     * @return Language
+     */
+    public function addReference(\AppBundle\Entity\Reference $reference)
+    {
+        $this->references[] = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Remove reference
+     *
+     * @param \AppBundle\Entity\Reference $reference
+     */
+    public function removeReference(\AppBundle\Entity\Reference $reference)
+    {
+        $this->references->removeElement($reference);
+    }
+
+    /**
+     * Get references
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReferences()
+    {
+        return $this->references;
+    }
+}

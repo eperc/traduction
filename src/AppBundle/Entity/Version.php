@@ -187,4 +187,3 @@ class Version
         return $this->score;
     }
 }
-

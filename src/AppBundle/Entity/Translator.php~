@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Translator
  *
- * @ORM\Table()
+ * @ORM\Table(name="translator")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\TranslatorRepository")
  */
 class Translator
@@ -20,47 +20,55 @@ class Translator
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
     * @ORM\OneToMany(targetEntity="Translation", mappedBy="translator")
     */
-    private $translations;
+    #protected $translations;
 
     /**
     * @ORM\OneToMany(targetEntity="Improvement", mappedBy="translator")
     */
-    private $improvements;
+    #protected $improvements;
 
     /**
     * @ORM\OneToMany(targetEntity="CertificateFile", mappedBy="translator")
     */
-    private $certificateFiles;    
+    #protected $certificateFiles;    
 
     /**
      * @ORM\ManyToMany(targetEntity="Specialty", inversedBy="translators")
      * @ORM\JoinTable(name="translators_specialties")
      */
-    private $specialties;
+    #protected $specialties;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="status", type="integer")
+     * @ORM\Column(name="status", type="integer", nullable=true)
      */
-    private $status;
+    protected $status;
 
     /**
      * @var decimal
      *
-     * @ORM\Column(name="penalty", type="decimal", scale=2)
+     * @ORM\Column(name="penalty", type="decimal", scale=2, nullable=true)
      */
-    private $penalty;    
+    protected $penalty;    
 
     /**
-    * @ORM\OneToOne(targetEntity="User", mappedBy="translator")
-    **/
-    private $user;
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        #$this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+        #$this->improvements = new \Doctrine\Common\Collections\ArrayCollection();
+        #$this->certificateFiles = new \Doctrine\Common\Collections\ArrayCollection();
+        #$this->specialties = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addRole('ROLE_TRANSLATOR');
+    }    
 
     /**
      * Get id
@@ -95,5 +103,28 @@ class Translator
     {
         return $this->status;
     }
-}
 
+    /**
+     * Set penalty
+     *
+     * @param string $penalty
+     *
+     * @return Translator
+     */
+    public function setPenalty($penalty)
+    {
+        $this->penalty = $penalty;
+
+        return $this;
+    }
+
+    /**
+     * Get penalty
+     *
+     * @return string
+     */
+    public function getPenalty()
+    {
+        return $this->penalty;
+    }
+}

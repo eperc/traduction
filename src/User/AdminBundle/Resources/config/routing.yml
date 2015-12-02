@@ -1,3 +1,7 @@
 user_admin_homepage:
     path:     /hello/{name}
     defaults: { _controller: UserAdminBundle:Default:index }
+
+admin_admins_index:
+    path:     /admins/index
+    defaults: { _controller: UserAdminBundle:Admin:index }    

@@ -284,4 +284,38 @@ class Demand
     {
         return $this->specialty;
     }
+
+    /**
+     * Add document
+     *
+     * @param \AppBundle\Entity\Document $document
+     *
+     * @return Demand
+     */
+    public function addDocument(\AppBundle\Entity\Document $document)
+    {
+        $this->documents[] = $document;
+
+        return $this;
+    }
+
+    /**
+     * Remove document
+     *
+     * @param \AppBundle\Entity\Document $document
+     */
+    public function removeDocument(\AppBundle\Entity\Document $document)
+    {
+        $this->documents->removeElement($document);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
+    }
 }

@@ -117,5 +117,110 @@ class Document
     {
         return $this->expiredAt;
     }
-}
 
+    /**
+     * Add deliverable
+     *
+     * @param \AppBundle\Entity\Deliverable $deliverable
+     *
+     * @return Document
+     */
+    public function addDeliverable(\AppBundle\Entity\Deliverable $deliverable)
+    {
+        $this->deliverables[] = $deliverable;
+
+        return $this;
+    }
+
+    /**
+     * Remove deliverable
+     *
+     * @param \AppBundle\Entity\Deliverable $deliverable
+     */
+    public function removeDeliverable(\AppBundle\Entity\Deliverable $deliverable)
+    {
+        $this->deliverables->removeElement($deliverable);
+    }
+
+    /**
+     * Get deliverables
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDeliverables()
+    {
+        return $this->deliverables;
+    }
+
+    /**
+     * Set demand
+     *
+     * @param \AppBundle\Entity\Demand $demand
+     *
+     * @return Document
+     */
+    public function setDemand(\AppBundle\Entity\Demand $demand = null)
+    {
+        $this->demand = $demand;
+
+        return $this;
+    }
+
+    /**
+     * Get demand
+     *
+     * @return \AppBundle\Entity\Demand
+     */
+    public function getDemand()
+    {
+        return $this->demand;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \AppBundle\Entity\Language $language
+     *
+     * @return Document
+     */
+    public function setLanguage(\AppBundle\Entity\Language $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \AppBundle\Entity\Language
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * Set specialty
+     *
+     * @param \AppBundle\Entity\Specialty $specialty
+     *
+     * @return Document
+     */
+    public function setSpecialty(\AppBundle\Entity\Specialty $specialty = null)
+    {
+        $this->specialty = $specialty;
+
+        return $this;
+    }
+
+    /**
+     * Get specialty
+     *
+     * @return \AppBundle\Entity\Specialty
+     */
+    public function getSpecialty()
+    {
+        return $this->specialty;
+    }
+}

@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+
+{% block header %}
+    {{ parent() }}
+    {% stylesheets '@UserAdminBundle/Resources/public/css/*' filter="cssrewrite" %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    <link href="{{ asset('@UserAdminBundle/Resources/public/css/layout.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+	{{ include('UserAdminBundle:layout:header.html.twig') }}
+	{{ include('UserAdminBundle:layout:sidebar.html.twig') }}
+
+	<div class="content">
+	{% block content %}
+
+	{% endblock %}
+	</div>
+{% endblock %}

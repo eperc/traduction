@@ -33,6 +33,7 @@ class Connection
 
     /**
      * @ORM\ManyToOne(targetEntity="Language", inversedBy="connections")
+     * @ORM\JoinColumn(name="language_id", referencedColumnName="id")
      */
     private $translatedTo;
 
@@ -46,5 +47,76 @@ class Connection
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set translation
+     *
+     * @param \AppBundle\Entity\Translation $translation
+     *
+     * @return Connection
+     */
+    public function setTranslation(\AppBundle\Entity\Translation $translation = null)
+    {
+        $this->translation = $translation;
+
+        return $this;
+    }
+
+    /**
+     * Get translation
+     *
+     * @return \AppBundle\Entity\Translation
+     */
+    public function getTranslation()
+    {
+        return $this->translation;
+    }
+
+    /**
+     * Set demand
+     *
+     * @param \AppBundle\Entity\Demand $demand
+     *
+     * @return Connection
+     */
+    public function setDemand(\AppBundle\Entity\Demand $demand = null)
+    {
+        $this->demand = $demand;
+
+        return $this;
+    }
+
+    /**
+     * Get demand
+     *
+     * @return \AppBundle\Entity\Demand
+     */
+    public function getDemand()
+    {
+        return $this->demand;
+    }
+
+    /**
+     * Set translatedTo
+     *
+     * @param \AppBundle\Entity\Language $translatedTo
+     *
+     * @return Connection
+     */
+    public function setTranslatedTo(\AppBundle\Entity\Language $translatedTo = null)
+    {
+        $this->translatedTo = $translatedTo;
+
+        return $this;
+    }
+
+    /**
+     * Get translatedTo
+     *
+     * @return \AppBundle\Entity\Language
+     */
+    public function getTranslatedTo()
+    {
+        return $this->translatedTo;
+    }
+}

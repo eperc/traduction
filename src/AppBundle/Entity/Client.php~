@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Client
  *
- * @ORM\Table()
+ * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\ClientRepository")
  */
 class Client
@@ -19,17 +19,12 @@ class Client
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
-    /**
-    * @ORM\OneToOne(targetEntity="User", mappedBy="client")
-    **/
-    private $user;
+    protected $id;
 
     /**
     * @ORM\OneToMany(targetEntity="Demand", mappedBy="client")
     */
-    private $demands;      
+    #protected $demands;      
 
     /**
      * Get id
@@ -40,5 +35,12 @@ class Client
     {
         return $this->id;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();   
+        $this->demands = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 }
-

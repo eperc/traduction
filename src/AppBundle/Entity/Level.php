@@ -114,4 +114,38 @@ class Level
     {
         return $this->references;
     }
+
+    /**
+     * Add deliverable
+     *
+     * @param \AppBundle\Entity\Deliverable $deliverable
+     *
+     * @return Level
+     */
+    public function addDeliverable(\AppBundle\Entity\Deliverable $deliverable)
+    {
+        $this->deliverables[] = $deliverable;
+
+        return $this;
+    }
+
+    /**
+     * Remove deliverable
+     *
+     * @param \AppBundle\Entity\Deliverable $deliverable
+     */
+    public function removeDeliverable(\AppBundle\Entity\Deliverable $deliverable)
+    {
+        $this->deliverables->removeElement($deliverable);
+    }
+
+    /**
+     * Get deliverables
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDeliverables()
+    {
+        return $this->deliverables;
+    }
 }

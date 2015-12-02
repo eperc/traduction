@@ -121,4 +121,72 @@ class Language
     {
         return $this->references;
     }
+
+    /**
+     * Add document
+     *
+     * @param \AppBundle\Entity\Document $document
+     *
+     * @return Language
+     */
+    public function addDocument(\AppBundle\Entity\Document $document)
+    {
+        $this->documents[] = $document;
+
+        return $this;
+    }
+
+    /**
+     * Remove document
+     *
+     * @param \AppBundle\Entity\Document $document
+     */
+    public function removeDocument(\AppBundle\Entity\Document $document)
+    {
+        $this->documents->removeElement($document);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
+    }
+
+    /**
+     * Add deliverable
+     *
+     * @param \AppBundle\Entity\Deliverable $deliverable
+     *
+     * @return Language
+     */
+    public function addDeliverable(\AppBundle\Entity\Deliverable $deliverable)
+    {
+        $this->deliverables[] = $deliverable;
+
+        return $this;
+    }
+
+    /**
+     * Remove deliverable
+     *
+     * @param \AppBundle\Entity\Deliverable $deliverable
+     */
+    public function removeDeliverable(\AppBundle\Entity\Deliverable $deliverable)
+    {
+        $this->deliverables->removeElement($deliverable);
+    }
+
+    /**
+     * Get deliverables
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDeliverables()
+    {
+        return $this->deliverables;
+    }
 }

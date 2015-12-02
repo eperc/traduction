@@ -55,6 +55,13 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @ORM\Column(name="type", type="string", length=100, nullable=true)
+     */
+    protected $type;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="name", type="string", length=100, nullable=true)
      */
     protected $name;
@@ -320,5 +327,295 @@ class User extends BaseUser
     public function getTranslator()
     {
         return $this->translator;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return User
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return User
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set postalCode
+     *
+     * @param string $postalCode
+     *
+     * @return User
+     */
+    public function setPostalCode($postalCode)
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    /**
+     * Get postalCode
+     *
+     * @return string
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * Set state
+     *
+     * @param string $state
+     *
+     * @return User
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Add demand
+     *
+     * @param \AppBundle\Entity\Demand $demand
+     *
+     * @return User
+     */
+    public function addDemand(\AppBundle\Entity\Demand $demand)
+    {
+        $this->demands[] = $demand;
+
+        return $this;
+    }
+
+    /**
+     * Remove demand
+     *
+     * @param \AppBundle\Entity\Demand $demand
+     */
+    public function removeDemand(\AppBundle\Entity\Demand $demand)
+    {
+        $this->demands->removeElement($demand);
+    }
+
+    /**
+     * Get demands
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDemands()
+    {
+        return $this->demands;
+    }
+
+    /**
+     * Add translation
+     *
+     * @param \AppBundle\Entity\Translation $translation
+     *
+     * @return User
+     */
+    public function addTranslation(\AppBundle\Entity\Translation $translation)
+    {
+        $this->translations[] = $translation;
+
+        return $this;
+    }
+
+    /**
+     * Remove translation
+     *
+     * @param \AppBundle\Entity\Translation $translation
+     */
+    public function removeTranslation(\AppBundle\Entity\Translation $translation)
+    {
+        $this->translations->removeElement($translation);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * Add improvement
+     *
+     * @param \AppBundle\Entity\Improvement $improvement
+     *
+     * @return User
+     */
+    public function addImprovement(\AppBundle\Entity\Improvement $improvement)
+    {
+        $this->improvements[] = $improvement;
+
+        return $this;
+    }
+
+    /**
+     * Remove improvement
+     *
+     * @param \AppBundle\Entity\Improvement $improvement
+     */
+    public function removeImprovement(\AppBundle\Entity\Improvement $improvement)
+    {
+        $this->improvements->removeElement($improvement);
+    }
+
+    /**
+     * Get improvements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImprovements()
+    {
+        return $this->improvements;
+    }
+
+    /**
+     * Add certificateFile
+     *
+     * @param \AppBundle\Entity\CertificateFile $certificateFile
+     *
+     * @return User
+     */
+    public function addCertificateFile(\AppBundle\Entity\CertificateFile $certificateFile)
+    {
+        $this->certificateFiles[] = $certificateFile;
+
+        return $this;
+    }
+
+    /**
+     * Remove certificateFile
+     *
+     * @param \AppBundle\Entity\CertificateFile $certificateFile
+     */
+    public function removeCertificateFile(\AppBundle\Entity\CertificateFile $certificateFile)
+    {
+        $this->certificateFiles->removeElement($certificateFile);
+    }
+
+    /**
+     * Get certificateFiles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCertificateFiles()
+    {
+        return $this->certificateFiles;
+    }
+
+    /**
+     * Add specialty
+     *
+     * @param \AppBundle\Entity\Specialty $specialty
+     *
+     * @return User
+     */
+    public function addSpecialty(\AppBundle\Entity\Specialty $specialty)
+    {
+        $this->specialties[] = $specialty;
+
+        return $this;
+    }
+
+    /**
+     * Remove specialty
+     *
+     * @param \AppBundle\Entity\Specialty $specialty
+     */
+    public function removeSpecialty(\AppBundle\Entity\Specialty $specialty)
+    {
+        $this->specialties->removeElement($specialty);
+    }
+
+    /**
+     * Get specialties
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSpecialties()
+    {
+        return $this->specialties;
     }
 }
