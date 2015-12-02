@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: 'C:\Users\asfwfefw\Documents\GitHub\traduction\app/config/routing_dev.yml'
